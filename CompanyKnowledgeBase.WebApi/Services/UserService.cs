@@ -49,9 +49,9 @@ public class UserService : IUserService
 
     public async Task<bool> UpdateUserAsync(int userId, UpdateUserDto user)
     {
-        var users = await RetriveAllUserAsync();
+        var oldUser = await RetriveUserByIdAsync(userId);
 
-        if (!users.Select(u => u.Id).Contains(userId))
+        if (oldUser is null)
             return false;
 
         var updatedUser = new User();
@@ -61,6 +61,7 @@ public class UserService : IUserService
         updatedUser.Email = user.Email;
         updatedUser.UserRole = user.UserRole;
         updatedUser.Password = user.Password;
+        updatedUser.CreatedDate = oldUser.CreatedDate;
 
         updatedUser.UpdatedDate = DateTime.Now;
 
