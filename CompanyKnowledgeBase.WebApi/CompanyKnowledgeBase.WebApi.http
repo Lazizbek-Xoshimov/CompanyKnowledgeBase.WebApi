@@ -1,11 +1,47 @@
 @CompanyKnowledgeBase.WebApi_HostAddress = http://localhost:5028
+@UserId = 1
 
-### Get User
+### Barcha userlarni olish
 GET {{CompanyKnowledgeBase.WebApi_HostAddress}}/api/user
 Accept: application/json
 
 ###
 
-### Get User By Id
-GET {{CompanyKnowledgeBase.WebApi_HostAddress}}/api/user/1
+### ID bo'yicha user olish
+GET {{CompanyKnowledgeBase.WebApi_HostAddress}}/api/user/{{UserId}}
+Accept: application/json
+
+###
+
+### Yangi user yaratish
+POST {{CompanyKnowledgeBase.WebApi_HostAddress}}/api/user
+Content-Type: application/json
+
+{
+  "firstName": "Ali",
+  "lastName": "Valiyev",
+  "email": "ali.valiyev@example.com",
+  "userRole": "User",
+  "password": "AliPass123"
+}
+
+###
+
+### User ma'lumotlarini yangilash
+PUT {{CompanyKnowledgeBase.WebApi_HostAddress}}/api/user/{{UserId}}
+Content-Type: application/json
+
+{
+  "firstName": "Ali",
+  "lastName": "Valiyev",
+  "email": "ali.valiyev@example.com",
+  "userRole": "Admin",
+  "password": "NewPass123"
+}
+
+###
+
+### Userni o'chirish
+DELETE {{CompanyKnowledgeBase.WebApi_HostAddress}}/api/user/{{UserId}}
+Accept: application/json
 Accept: application/json
